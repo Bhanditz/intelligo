@@ -1,14 +1,14 @@
 {
   "name": "intelligo",
-  "version": "0.6.2",
+  "version": "0.8.0",
   "description": "AI Chatbot Framework for Node.js",
   "main": "index.js",
   "author": "Turtuvshin Byambaa",
-  "homepage": "https://www.techstar.cloud",
-  "copyright": "Copyright 2018 Techstar, Inc.",
+  "homepage": "https://github.com/opengineer/intelligo",
+  "copyright": "Copyright 2019 Opengineer.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/techstar-cloud/intelligo.git"
+    "url": "https://github.com/opengineer/intelligo.git"
   },
   "license": "MIT",
   "keywords": [
@@ -37,12 +37,35 @@
   "dependencies": {
     "body-parser": "^1.18.3",
     "config": "^1.30.0",
-    "express": "^4.16.3",
     "eventemitter3": "^3.1.0",
-    "techstar-ai": "^1.0.6",
-    "request": "^2.87.0"
+    "express": "^4.16.3",
+    "opencollective": "^1.0.3",
+    "opencollective-postinstall": "^2.0.1",
+    "request": "^2.87.0",
+    "techstar-ai": "^1.0.8",
+    "async": "*",
+    "brain.js": "^1.0.5",
+    "graph-paths": "latest",
+    "languagemodel": "latest",
+    "sprintf": "*",
+    "svm": "*",
+    "temp": "*",
+    "underscore": "*",
+    "wordsworth": "*"
   },
   "devDependencies": {
-    "eslint": "^4.19.1"
+    "eslint": "^4.19.1",
+    "chai": "^3.5.0",
+    "mocha": "^4.1.0",
+    "sinon": "^1.17.4"
+  },
+  "collective": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/intelligo"
+  },
+  "scripts": {
+    "postinstall": "opencollective-postinstall",
+    "test": "mocha --recursive test/*",
+    "test:watch": "npm test -- --watch"
   }
 }

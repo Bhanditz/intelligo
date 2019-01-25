@@ -17,7 +17,6 @@ class IntelligoBot extends EventEmitter{
     this.VALIDATION_TOKEN = options.VALIDATION_TOKEN;
     this.APP_SECRET = options.APP_SECRET;
     this.FB_URL = options.FB_URL || 'https://graph.facebook.com/v2.12/';
-    this.api = options.api;
     this.app = options.app || express();
     this.webhook = options.webhook || '/webhook';
     this.app.use(bodyParser.json({ verify: this.verifyRequestSignature.bind(this) }));
@@ -25,11 +24,9 @@ class IntelligoBot extends EventEmitter{
   }
 
   learn (data){
-      console.log("AI суралцаж эхэллээ...");
-      const startedTime = new Date().getTime();
       // Repeat multiple levels
       const TextClassifier = TechstarAI.classifiers.multilabel.BinaryRelevance.bind(0, {
-          binaryClassifierType: TechstarAI.classifiers.Winnow.bind(0, {retrain_count: 100})
+          binaryClassifierType: TechstarAI.classifiers.Winnow.bind(0, {retrain_count: 10})
       });
 
       const WordExtractor = (input, features) => {
@@ -42,18 +39,18 @@ class IntelligoBot extends EventEmitter{
       });
 
       this.techstarClassifier.trainBatch(data);
-      console.log("AI суралцаж дууслаа." + (new Date().getTime()-startedTime)/1000+" секундэд уншиж дууслаа.");
   }
 
   answer (question) {
-      const startedTime = new Date().getTime();
-      console.log("AI хариултыг хайж байна...");
       const result =  this.techstarClassifier.classify(question);
-      console.log("AI хариултыг оллоо.  \n " + (new Date().getTime()-startedTime)/1000+" секундэд уншиж дууслаа.");
       return result;
   }
 
   initWebhook() {
+      /*
+       * Use your own validation token. Check that the token used in the Webhook 
+       * setup is the same token used here.
+       */
       this.app.get(this.webhook, (req, res) => {
           if (req.query['hub.mode'] === 'subscribe' &&
               req.query['hub.verify_token'] === this.VALIDATION_TOKEN) {
@@ -64,7 +61,12 @@ class IntelligoBot extends EventEmitter{
               res.sendStatus(403);
           }
       });
-
+      /*
+       * All callbacks for Messenger are POST-ed. They will be sent to the same
+       * webhook. Be sure to subscribe your app to your page to receive callbacks
+       * for your page. 
+       * https://developers.facebook.com/docs/messenger-platform/product-overview/setup#subscribe_app
+       */
       this.app.post(this.webhook, (req, res) => {
           var data = req.body;
 
@@ -80,12 +82,17 @@ class IntelligoBot extends EventEmitter{
       });
   }
   
+  // Iterate over each messaging event
   handleEvent(event) { 
     if (event.optin) {
         let optin = event.optin.ref;
         this.emit('optin', event.sender.id, event, optin);
+    } else if (typeof event.message === 'string') {
+        this.emit('message', event);
     } else if (event.message && !event.message.is_echo) {
-         this.emit('message', event);
+        this.emit('message', event);
+    } else if (event.message && event.message.attachment) {
+        this.emit('attachment', event.sender.id, event.message.attachment, event.message.url, event.message.quickReplies);
     } else if (event.delivery) {
         let mids = event.delivery.mids;
         this.emit('delivery', event.sender.id, event, mids);
@@ -102,13 +109,25 @@ class IntelligoBot extends EventEmitter{
     } else if (event.account_linking) {
         let link = event.account_linking;
         this.emit('account_link', event.sender.id, event, link);
+    } else {
+       console.error('Invalid format for message.');
     }
   }
-
+  
+  /*
+   * Verify that the callback came from Facebook. Using the App Secret from 
+   * the App Dashboard, we can verify the signature that is sent with each 
+   * callback in the x-hub-signature field, located in the header.
+   *
+   * https://developers.facebook.com/docs/graph-api/webhooks#setup
+   *
+   */
   verifyRequestSignature(req, res, buf) {
       const signature = req.headers["x-hub-signature"];
 
       if (!signature) {
+        // For testing, let's log an error. In production, you should throw an 
+        // error.
           console.error("Couldn't validate the signature.");
       } else {
           const elements = signature.split('='),
@@ -234,6 +253,25 @@ class IntelligoBot extends EventEmitter{
       });
   }
   
+  sendGenericMessage(recipientId, elements) {
+    var messageData = {
+      recipient: {
+        id: recipientId
+      },
+      message: {
+        attachment: {
+          type: "template",
+          payload: {
+            template_type: "generic",
+            elements: elements
+        }
+        }
+      }
+    };
+
+    this.callSendAPI(messageData);
+  }
+  
   sendButtonMessage(recipientId, text, buttons) {
     var messageData = {
       recipient: {
@@ -310,7 +348,11 @@ class IntelligoBot extends EventEmitter{
 
       this.sendTextMessage(senderID, "Postback called");
   }
-
+  
+  /*
+   * Send a read receipt to indicate the message has been read
+   *
+   */
   sendReadReceipt(recipientId) {
 
       this.callSendAPI({

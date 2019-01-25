@@ -1,20 +1,35 @@
-# Intelligo AI chatbot framework
+<p align="center">
+	<img src="/.github/intelligo-logo.png" width="200"/>
+<br>
+	<b>Intelligo AI chatbot framework</b>
+</p>
+<p align="center">
+    <a class="badge-align" href="https://www.codacy.com/app/tortuvshin/intelligo?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=techstar-inc/intelligo&amp;utm_campaign=Badge_Grade"><img src="https://api.codacy.com/project/badge/Grade/c7f41b9927fe4d2a9b18e564e23294cc"/></a>
+   <a href="https://www.npmjs.com/package/intelligo">
+      <img alt="npm downloads" src="https://img.shields.io/npm/dt/intelligo.svg?style=flat-square">
+    </a>
+    <a href="https://www.npmjs.com/package/intelligo">
+        <img alt="undefined" src="https://img.shields.io/npm/v/intelligo.svg?style=flat-square">
+        </a>
+    <a href="https://github.com/tortuvshin/">
+        <img src="https://img.shields.io/github/followers/tortuvshin.svg?style=social&label=Follow"
+            alt="Followers"></a>
+    <a href="https://github.com/opengineer/intelligo/blob/master/LICENSE">
+            <img alt="License" src="https://img.shields.io/github/license/opengineer/intelligo.svg?colorB=blue&style=flat-square">
+           </a>
+      <a href="https://twitter.com/intent/tweet?text=Wow:&url=https://github.com/opengineer/intelligo">
+     <img alt="Tweet" src="https://img.shields.io/twitter/url/http/shields.io.svg?style=social">
+     </a>
+      
+</p>
 
-[![NPM](https://nodei.co/npm/intelligo.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/intelligo/)
 
 Intelligo is a JavaScript Framework to build Facebook Messenger's Chat bots.
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/c7f41b9927fe4d2a9b18e564e23294cc)](https://www.codacy.com/app/tortuvshin/intelligo?utm_source=github.com&utm_medium=referral&utm_content=techstar-cloud/intelligo&utm_campaign=badger)
-[![npm](https://img.shields.io/npm/v/intelligo.svg?style=plastic)](https://www.npmjs.com/package/intelligo)
-[![npm](https://img.shields.io/npm/dt/intelligo.svg?style=plastic)](https://www.npmjs.com/package/intelligo)
-[![GitHub license](https://img.shields.io/github/license/techstar-cloud/intelligo.svg)](https://github.com/techstar-cloud/intelligo/blob/master/LICENSE)
-[![Twitter](https://img.shields.io/twitter/url/https/github.com/techstar-cloud/intelligo.svg?style=social)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2Ftechstar-cloud%2Fintelligo)
 
 ## Installation
 
-```
-npm install intelligo --save
-```
+[![NPM](https://nodei.co/npm/intelligo.png?compact=true)](https://nodei.co/npm/intelligo/)
 
 ## Example
 
@@ -87,16 +102,43 @@ bot.on('message', (event) => {
 });
 ```
 
-## Docs
-
-#### Coming soon ...
-
 ## Contributors
 
 You may contribute in several ways like creating new features, fixing bugs, improving documentation and examples
 or translating any document here to your language. [Find more information in CONTRIBUTING.md](CONTRIBUTING.md).
 <a href="https://github.com/techstar-cloud/intelligo/graphs/contributors">Contributors</a>
 
+This project exists thanks to all the people who contribute. 
+<a href="https://github.com/techstar-cloud/intelligo/contributors"><img src="https://opencollective.com/intelligo/contributors.svg?width=890&button=false" /></a>
+
+
+## Backers
+
+Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com/intelligo#backer)]
+
+<a href="https://opencollective.com/intelligo#backers" target="_blank"><img src="https://opencollective.com/intelligo/backers.svg?width=890"></a>
+
+
+## Sponsors
+
+Support this project by becoming a sponsor. Your logo will show up here with a link to your website. [[Become a sponsor](https://opencollective.com/intelligo#sponsor)]
+
+<a href="https://opencollective.com/intelligo/sponsor/0/website" target="_blank"><img src="https://opencollective.com/intelligo/sponsor/0/avatar.svg"></a>
+<a href="https://opencollective.com/intelligo/sponsor/1/website" target="_blank"><img src="https://opencollective.com/intelligo/sponsor/1/avatar.svg"></a>
+<a href="https://opencollective.com/intelligo/sponsor/2/website" target="_blank"><img src="https://opencollective.com/intelligo/sponsor/2/avatar.svg"></a>
+<a href="https://opencollective.com/intelligo/sponsor/3/website" target="_blank"><img src="https://opencollective.com/intelligo/sponsor/3/avatar.svg"></a>
+<a href="https://opencollective.com/intelligo/sponsor/4/website" target="_blank"><img src="https://opencollective.com/intelligo/sponsor/4/avatar.svg"></a>
+<a href="https://opencollective.com/intelligo/sponsor/5/website" target="_blank"><img src="https://opencollective.com/intelligo/sponsor/5/avatar.svg"></a>
+<a href="https://opencollective.com/intelligo/sponsor/6/website" target="_blank"><img src="https://opencollective.com/intelligo/sponsor/6/avatar.svg"></a>
+<a href="https://opencollective.com/intelligo/sponsor/7/website" target="_blank"><img src="https://opencollective.com/intelligo/sponsor/7/avatar.svg"></a>
+<a href="https://opencollective.com/intelligo/sponsor/8/website" target="_blank"><img src="https://opencollective.com/intelligo/sponsor/8/avatar.svg"></a>
+<a href="https://opencollective.com/intelligo/sponsor/9/website" target="_blank"><img src="https://opencollective.com/intelligo/sponsor/9/avatar.svg"></a>
+
+
+
 ## License
 
-[MIT](LICENSE).
+> Copyright (C) 2019 Opengineer.  
+> Intelligo framework is open-sourced software licensed under the [MIT](https://opensource.org/licenses/MIT) license.  
+> (See the [LICENSE](https://github.com/opengineer/intelligo/blob/master/LICENSE) file for the whole license text.)
+
